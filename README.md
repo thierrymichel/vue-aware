@@ -21,8 +21,8 @@
 
 Another kind of bus event?
 
-What makes `vue-aware` special is how it manages events for you.
-`vue-aware` will create as **LESS** listeners as possible and **ONLY** when some components need it!
+What makes `vue-aware` special is how it manages events for you.<br>
+`vue-aware` will create as **LESS** listeners as possible and **ONLY** when some components need it!<br>
 Which is good performance wise…
 
 ---
@@ -126,7 +126,8 @@ export default {
 
 ### Raf (requestAnimationFrame)
 
-Use [requestAnimationFrame](https://developer.mozilla.org/en-US/docs/Web/API/window/requestAnimationFrame) to trigger your handler. There is no options.
+Use [requestAnimationFrame](https://developer.mozilla.org/en-US/docs/Web/API/window/requestAnimationFrame) to trigger your handler.<br>
+There is no options.
 
 #### Example
 
@@ -144,7 +145,7 @@ export default {
 
 ### Scroll
 
-Gives you the scroll position (`x` and `y`).
+Gives you the scroll position (`x` and `y`).<br>
 You can throttle or debounce it ([read more](https://css-tricks.com/the-difference-between-throttling-and-debouncing/)).
 
 #### Example
@@ -173,9 +174,9 @@ export default {
 
 ### Viewport
 
-When a window resize is detected.
-It gives you the width and height of the viewport + ratio (width/height).
-You can throttle or debounce it ([read more](https://css-tricks.com/the-difference-between-throttling-and-debouncing/)).
+When a window resize is detected.<br>
+It gives you the width and height of the viewport + ratio (width/height).<br>
+You can throttle or debounce it ([read more](https://css-tricks.com/the-difference-between-throttling-and-debouncing/)).<br>
 By default, it is throttled (`150ms`).
 
 #### Example
