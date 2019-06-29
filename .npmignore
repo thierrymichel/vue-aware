@@ -1,0 +1,7 @@
+### Custom ###
+/src
+/__test__
+/.editorconfig
+/prettier.config.js
+/tsconfig.json
+/tslint.json
