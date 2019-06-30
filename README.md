@@ -3,7 +3,7 @@
 > Optimized and easy way to manage events across Vue.js components.
 
 ![stability-wip](https://img.shields.io/badge/stability-work_in_progress-lightgrey.svg?style=flat-square)
-[![NPM version](https://img.shields.io/npm/v/thierrymichel/vue-aware.svg?style=flat-square)](https://www.npmjs.com/package/thierrymichel/vue-aware)
+[![NPM version](https://img.shields.io/npm/v/vue-aware.svg?style=flat-square)](https://www.npmjs.com/package/vue-aware)
 [![CircleCI](https://img.shields.io/circleci/project/github/thierrymichel/vue-aware/master.svg?style=flat-square)](https://circleci.com/gh/thierrymichel/vue-aware/tree/master)
 [![Coverage Status](https://img.shields.io/coveralls/github/thierrymichel/vue-aware/master.svg?style=flat-square)](https://coveralls.io/github/thierrymichel/vue-aware?branch=master)
 [![Commitizen friendly](https://img.shields.io/badge/commitizen-friendly-brightgreen.svg?style=flat-square)](http://commitizen.github.io/cz-cli/)
