@@ -14,8 +14,8 @@
   "browser": "dist/vue-aware.umd.js",
   "unpkg": "dist/vue-aware.umd.js",
   "module": "dist/vue-aware.mjs",
-  "source": "src/index.ts",
   "types": "dist/src/index.d.ts",
+  "source": "src/index.ts",
   "mangle": {
     "regex": "^_"
   },
@@ -45,7 +45,7 @@
     "publish": "git push --follow-tags && npm publish",
     "release": "npm test && standard-version",
     "start": "npm-run-all -p build:watch unit:watch",
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "echo \"Error: no test specified\" && exit 0",
     "unit": "jest --coverage",
     "unit:ci": "jest --coverage --maxWorkers=2",
     "unit:watch": "jest --watch --verbose false"
