@@ -70,7 +70,8 @@ function getOptions(eventName: string, value: any, handlers: any): any {
   const options = (value && value[eventName]) || {};
 
   // If no callback option, check @event
-  if (!options.callback) {
+  /* istanbul ignore else */
+  if (!options.callback && handlers) {
     options.callback = handlers[eventName];
   }
 
@@ -80,10 +81,17 @@ function getOptions(eventName: string, value: any, handlers: any): any {
 const inserted: DirectiveFunction = (el, { value }, vnode) => {
   const { on: handlers } = vnode.data;
 
+  // Just the directive. No value, no @/v-on events.
+  /* istanbul ignore else */
+  if (!handlers && !value) {
+    return;
+  }
+
   // Register callbacks.
   core.eventNames.forEach(name => {
     const options = getOptions(name, value, handlers);
 
+    /* istanbul ignore else */
     if (options.callback) {
       core.add(name, el, options);
     }
@@ -93,6 +101,7 @@ const inserted: DirectiveFunction = (el, { value }, vnode) => {
 const unbind: DirectiveFunction = (el, binding, vnode) => {
   // Unregister callbacks.
   core.eventNames.forEach(name => {
+    /* istanbul ignore else */
     if (core.elementsByEventName.has(name, el)) {
       core.remove(name, el);
     }
@@ -110,6 +119,7 @@ const update: DirectiveFunction = (el, { value, oldValue }, vnode) => {
       // If callback still here
       if (options.callback) {
         // And options changed
+        /* istanbul ignore else */
         if (!isEqual(value, oldValue)) {
           core.update(name, el, options);
         }
@@ -119,6 +129,7 @@ const update: DirectiveFunction = (el, { value, oldValue }, vnode) => {
       }
     } else {
       // Element was not registered, new callback added.
+      /* istanbul ignore else */
       if (options.callback) {
         core.add(name, el, options);
       }

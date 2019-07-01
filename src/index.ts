@@ -21,6 +21,7 @@ function install(Vue: typeof _Vue) {
 // Plugin
 const plugin = {
   install,
+  name: 'vue-aware',
   version,
 };
 
@@ -29,12 +30,13 @@ export default plugin;
 // Auto-install
 // tslint:disable-next-line:variable-name
 let GlobalVue = null;
-
+/* istanbul ignore else */
 if (typeof window !== 'undefined') {
   GlobalVue = (window as any).Vue;
 } else if (typeof global !== 'undefined') {
   GlobalVue = (global as any).Vue;
 }
+/* istanbul ignore else */
 if (GlobalVue) {
   GlobalVue.use(plugin);
 }

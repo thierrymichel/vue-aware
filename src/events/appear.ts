@@ -23,7 +23,7 @@ export class Appear extends Manager {
 
   constructor() {
     super();
-    if (typeof IntersectionObserver === 'undefined') {
+    if (typeof (window as any).IntersectionObserver === 'undefined') {
       /* tslint:disable:max-line-length */
       console.warn(
         '[vue-aware] IntersectionObserver API is not available in your browser. Please install this polyfill: https://github.com/w3c/IntersectionObserver/tree/master/polyfill'
