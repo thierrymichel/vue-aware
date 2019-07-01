@@ -1,5 +1,5 @@
 module.exports = {
-  collectCoverageFrom: ['src/index.ts'],
+  collectCoverageFrom: ['src/**/*.ts'],
   coverageThreshold: {
     global: {
       statements: 100,
@@ -15,9 +15,7 @@ module.exports = {
     },
   },
   resetMocks: true,
-  // DEV
-  // testEnvironment: 'jest-environment-jsdom-global',
-  testEnvironment: 'node',
+  testEnvironment: 'jest-environment-jsdom-global',
   testMatch: ['**/__tests__/**/*.ts', '**/?(*.)+(spec|test).ts'],
   verbose: true,
   // DEV

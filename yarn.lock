@@ -4015,6 +4015,11 @@ jest-each@^24.8.0:
     jest-util "^24.8.0"
     pretty-format "^24.8.0"
 
+jest-environment-jsdom-global@^1.2.0:
+  version "1.2.0"
+  resolved "https://registry.yarnpkg.com/jest-environment-jsdom-global/-/jest-environment-jsdom-global-1.2.0.tgz#dd5b16fe0a0566ee40010d8632be5adf5a5ccb65"
+  integrity sha512-41cDl0OxzmFY/cnW0COUN+lnt2N2ks1r3V4fAKOnlZ9xIrGy0PNPan+Bz8HP+uQy/8bGV6T7J4Oi7X+h43It6g==
+
 jest-environment-jsdom@^24.8.0:
   version "24.8.0"
   resolved "https://registry.yarnpkg.com/jest-environment-jsdom/-/jest-environment-jsdom-24.8.0.tgz#300f6949a146cabe1c9357ad9e9ecf9f43f38857"
