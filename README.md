@@ -62,7 +62,9 @@ Vue.use(VueAware);
 - `v-on:[event]="handler"` or
 - `v-aware="{ [event]: { callback: handler } }"`
 
-> `callback` property have precedence over `@` or `v-on` directive…
+🚨Components (vs elements) only accept `callback` property with `v-aware` directive (`@` or `v-on` won't work)
+
+> Note: `callback` property has precedence over `@` or `v-on` directive…<br>
 
 #### Example (scroll)
 
@@ -119,7 +121,7 @@ and an extra one:
 ```js
 export default {
   methods: {
-    appearHandler(isInViewport, isFullyInViewport, position) {},
+    appearHandler(isInViewport, isFullyInViewport, position, context) {},
   },
 };
 ```
@@ -138,7 +140,7 @@ There is no options.
 ```js
 export default {
   methods: {
-    rafHandler(delta, now) {},
+    rafHandler(delta, now, context) {},
   },
 };
 ```
@@ -167,7 +169,7 @@ You can throttle or debounce it ([read more](https://css-tricks.com/the-differen
 ```js
 export default {
   methods: {
-    scrollHandler(scrollX, scrollY) {},
+    scrollHandler(scrollX, scrollY, context) {},
   },
 };
 ```
@@ -198,7 +200,7 @@ By default, it is throttled (`150ms`).
 ```js
 export default {
   methods: {
-    viewportHandler(width, height, ratio) {},
+    viewportHandler(width, height, ratio, context) {},
   },
 };
 ```

@@ -1,7 +1,14 @@
-import _Vue, { DirectiveFunction } from 'vue';
+import _Vue, { DirectiveFunction, VNode } from 'vue';
 import { Appear, Raf, Scroll, Viewport } from '../events';
 import isEqual from '../utils/is-equal';
 import Multimap from '../utils/multimap';
+
+export interface IOption<T extends (...args: any[]) => void> {
+  // Not allowed with TS
+  // callback: (...args: Parameters<T>, context: _Vue) => void;
+  callback: (...args: Parameters<T>) => void;
+  context: _Vue;
+}
 
 class AwareCore {
   public eventNames: string[];
@@ -65,15 +72,21 @@ core.register('raf', Raf);
 core.register('scroll', Scroll);
 core.register('viewport', Viewport);
 
-function getOptions(eventName: string, value: any, handlers: any): any {
+function getOptions(eventName: string, value: any, vnode: VNode): any {
+  const { context, data } = vnode;
+  const { on: handlers } = data;
+
   // Options based on `v-aware="{}"`
-  const options = (value && value[eventName]) || {};
+  const options: IOption<() => void> = (value && value[eventName]) || {};
 
   // If no callback option, check @event
   /* istanbul ignore else */
   if (!options.callback && handlers) {
-    options.callback = handlers[eventName];
+    options.callback = handlers[eventName] as () => void;
   }
+
+  // Add context (Vue instance)
+  options.context = context;
 
   return options;
 }
@@ -87,9 +100,12 @@ const inserted: DirectiveFunction = (el, { value }, vnode) => {
     return;
   }
 
+  console.info('VNODE', el, vnode.context);
+  console.info('???', handlers, value);
+
   // Register callbacks.
   core.eventNames.forEach(name => {
-    const options = getOptions(name, value, handlers);
+    const options = getOptions(name, value, vnode);
 
     /* istanbul ignore else */
     if (options.callback) {
@@ -109,10 +125,8 @@ const unbind: DirectiveFunction = (el, binding, vnode) => {
 };
 
 const update: DirectiveFunction = (el, { value, oldValue }, vnode) => {
-  const { on: handlers } = vnode.data;
-
   core.eventNames.forEach(name => {
-    const options = getOptions(name, value, handlers);
+    const options = getOptions(name, value, vnode);
 
     // Check if element is registered for the event.
     if (core.elementsByEventName.has(name, el)) {

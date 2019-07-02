@@ -1,25 +1,26 @@
+import _Vue from 'vue';
+import { IOption } from '../directives/aware';
 import Multimap from '../utils/multimap';
 import { Manager } from './manager';
 
 type appearCallback = (
   isInViewport: boolean,
   isFullyInViewport: boolean,
-  position: string
+  position: string,
+  context: _Vue
 ) => void;
 
-interface IAppearOption {
+interface IAppearOption extends IOption<appearCallback> {
   once?: boolean;
   root?: Element;
   rootMargin?: string; // DOMString ?
-  threshold: number | number[];
-  callback: appearCallback;
+  threshold?: number | number[];
 }
 
-export class Appear extends Manager {
+export class Appear extends Manager<IAppearOption> {
   private observers: Set<IntersectionObserver>;
   private elementsByObserver: Multimap<HTMLElement>;
   private onceByElement: Map<HTMLElement, boolean>;
-  private cbByElement: Map<HTMLElement, appearCallback>;
 
   constructor() {
     super();
@@ -36,7 +37,6 @@ export class Appear extends Manager {
     this.observers = new Set();
     this.elementsByObserver = new Multimap();
     this.onceByElement = new Map();
-    this.cbByElement = new Map();
   }
 
   public bind(el: HTMLElement, opts: IAppearOption) {
@@ -51,7 +51,7 @@ export class Appear extends Manager {
     const observer = this.createObserver(options, el);
 
     this.onceByElement.set(el, options.once);
-    this.cbByElement.set(el, options.callback);
+    this.optionsByElement.set(el, options);
     observer.observe(el);
   }
 
@@ -151,7 +151,9 @@ export class Appear extends Manager {
         position = 'bottom';
       }
 
-      this.cbByElement.get(el)(isInViewport, isFullyInViewport, position);
+      const o = this.optionsByElement.get(el);
+
+      o.callback(isInViewport, isFullyInViewport, position, o.context);
 
       if (isInViewport && this.onceByElement.get(el)) {
         this.unobserve(el);

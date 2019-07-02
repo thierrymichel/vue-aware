@@ -1,6 +1,12 @@
+import _Vue from 'vue';
+import { IOption } from '../directives/aware';
 import { Manager } from './manager';
 
-export class Raf extends Manager {
+type rafCallback = (delta: number, now: number, context: _Vue) => void;
+
+interface IRafOption extends IOption<rafCallback> {}
+
+export class Raf extends Manager<IRafOption> {
   private oldTime: number;
   private raf: number;
 
@@ -20,8 +26,8 @@ export class Raf extends Manager {
   }
 
   private handler(delta: number, now: number) {
-    this.callbacksByElement.forEach(cb => {
-      cb(delta, now);
+    this.optionsByElement.forEach(o => {
+      o.callback(delta, now, o.context);
     });
   }
 

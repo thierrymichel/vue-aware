@@ -1,12 +1,16 @@
 import debounce from 'lodash.debounce';
+import _Vue from 'vue';
+import { IOption } from '../directives/aware';
 import { Manager } from './manager';
 
-interface IScrollOption {
+type scrollCallback = (x: number, y: number, context: _Vue) => void;
+
+interface IScrollOption extends IOption<scrollCallback> {
   debounce?: number;
   throttle?: number;
 }
 
-export class Scroll extends Manager {
+export class Scroll extends Manager<IScrollOption> {
   constructor() {
     super();
     this.handler = this.handler.bind(this);
@@ -31,8 +35,8 @@ export class Scroll extends Manager {
   }
 
   private handler() {
-    this.callbacksByElement.forEach(cb => {
-      cb(window.pageXOffset, window.pageYOffset);
+    this.optionsByElement.forEach(o => {
+      o.callback(window.pageXOffset, window.pageYOffset, o.context);
     });
   }
 }

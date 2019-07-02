@@ -1,12 +1,21 @@
 import debounce from 'lodash.debounce';
+import _Vue from 'vue';
+import { IOption } from '../directives/aware';
 import { Manager } from './manager';
 
-interface IViewportOption {
+type viewportCallback = (
+  width: number,
+  height: number,
+  ratio: number,
+  context: _Vue
+) => void;
+
+interface IViewportOption extends IOption<viewportCallback> {
   debounce?: number;
   throttle?: number;
 }
 
-export class Viewport extends Manager {
+export class Viewport extends Manager<IViewportOption> {
   // Default throttling (ms)
   private throttle = 150;
 
@@ -35,10 +44,10 @@ export class Viewport extends Manager {
   }
 
   private handler() {
-    this.callbacksByElement.forEach(cb => {
+    this.optionsByElement.forEach(o => {
       const { innerWidth: w, innerHeight: h } = window;
 
-      cb(w, h, w / h);
+      o.callback(w, h, w / h, o.context);
     });
   }
 }

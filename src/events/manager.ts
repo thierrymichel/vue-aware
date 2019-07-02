@@ -1,25 +1,25 @@
-export abstract class Manager {
-  public callbacksByElement: Map<HTMLElement, any>;
+export abstract class Manager<O> {
+  public optionsByElement: Map<HTMLElement, O>;
 
   constructor() {
-    this.callbacksByElement = new Map();
+    this.optionsByElement = new Map();
   }
 
-  public abstract bind(el: HTMLElement, options: any): void;
+  public abstract bind(el: HTMLElement, options: O): void;
   public abstract unbind(el: HTMLElement): void;
 
   public add(el: HTMLElement, options: any) {
-    this.callbacksByElement.set(el, options.callback);
+    this.optionsByElement.set(el, options.callback);
 
-    if (this.callbacksByElement.size === 1) {
+    if (this.optionsByElement.size === 1) {
       this.bind(el, options);
     }
   }
 
   public remove(el: HTMLElement) {
-    this.callbacksByElement.delete(el);
+    this.optionsByElement.delete(el);
 
-    if (this.callbacksByElement.size === 0) {
+    if (this.optionsByElement.size === 0) {
       this.unbind(el);
     }
   }
