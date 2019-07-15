@@ -9,7 +9,7 @@ export abstract class Manager<O> {
   public abstract unbind(el: HTMLElement): void;
 
   public add(el: HTMLElement, options: any) {
-    this.optionsByElement.set(el, options.callback);
+    this.optionsByElement.set(el, options);
 
     if (this.optionsByElement.size === 1) {
       this.bind(el, options);
