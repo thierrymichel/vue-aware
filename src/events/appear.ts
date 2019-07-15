@@ -22,8 +22,8 @@ export class Appear extends Manager<IAppearOption> {
   private elementsByObserver: Multimap<HTMLElement>;
   private onceByElement: Map<HTMLElement, boolean>;
 
-  constructor() {
-    super();
+  constructor(eventName: string) {
+    super(eventName);
     if (typeof (window as any).IntersectionObserver === 'undefined') {
       /* tslint:disable:max-line-length */
       console.warn(

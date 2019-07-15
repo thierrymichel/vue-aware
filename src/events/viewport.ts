@@ -19,8 +19,8 @@ export class Viewport extends Manager<IViewportOption> {
   // Default throttling (ms)
   private throttle = 150;
 
-  constructor() {
-    super();
+  constructor(eventName: string) {
+    super(eventName);
     this.handler = this.handler.bind(this);
   }
 

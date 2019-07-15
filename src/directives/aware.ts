@@ -13,12 +13,12 @@ export interface IOption<T extends (...args: any[]) => void> {
 class AwareCore {
   public eventNames: string[];
   public elementsByEventName: Multimap<HTMLElement>;
-  private managersByEventName: Map<string, any>;
+  private managerByEventName: Map<string, any>;
 
   constructor() {
     this.eventNames = [];
     this.elementsByEventName = new Multimap();
-    this.managersByEventName = new Map();
+    this.managerByEventName = new Map();
   }
 
   // TODO: improve type `Manager: any`
@@ -27,11 +27,11 @@ class AwareCore {
    */
   // tslint:disable-next-line:variable-name
   public register(eventName: string, Manager: any) {
-    const manager = new Manager();
+    const manager = new Manager(eventName);
 
     if (manager) {
       this.eventNames.push(eventName);
-      this.managersByEventName.set(eventName, new Manager());
+      this.managerByEventName.set(eventName, manager);
     }
   }
 
@@ -40,7 +40,7 @@ class AwareCore {
    */
   // TODO: improve type `options: any`
   public add(eventName: string, el: HTMLElement, options: any) {
-    const manager = this.managersByEventName.get(eventName);
+    const manager = this.managerByEventName.get(eventName);
 
     manager.add(el, options);
     this.elementsByEventName.add(eventName, el);
@@ -50,7 +50,7 @@ class AwareCore {
    * Remove event listener from element.
    */
   public remove(eventName: string, el: HTMLElement) {
-    const manager = this.managersByEventName.get(eventName);
+    const manager = this.managerByEventName.get(eventName);
 
     manager.remove(el);
     this.elementsByEventName.delete(eventName, el);

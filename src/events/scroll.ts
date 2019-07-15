@@ -11,8 +11,8 @@ interface IScrollOption extends IOption<scrollCallback> {
 }
 
 export class Scroll extends Manager<IScrollOption> {
-  constructor() {
-    super();
+  constructor(eventName: string) {
+    super(eventName);
     this.handler = this.handler.bind(this);
   }
 

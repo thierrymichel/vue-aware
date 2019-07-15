@@ -10,8 +10,8 @@ export class Raf extends Manager<IRafOption> {
   private oldTime: number;
   private raf: number;
 
-  constructor() {
-    super();
+  constructor(eventName: string) {
+    super(eventName);
     this.handler = this.handler.bind(this);
     this.onTick = this.onTick.bind(this);
     this.oldTime = 0;

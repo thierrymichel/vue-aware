@@ -1,7 +1,9 @@
 export abstract class Manager<O> {
+  public name: string;
   public optionsByElement: Map<HTMLElement, O>;
 
-  constructor() {
+  constructor(eventName: string) {
+    this.name = eventName;
     this.optionsByElement = new Map();
   }
 
@@ -10,17 +12,11 @@ export abstract class Manager<O> {
 
   public add(el: HTMLElement, options: any) {
     this.optionsByElement.set(el, options);
-
-    if (this.optionsByElement.size === 1) {
-      this.bind(el, options);
-    }
+    this.bind(el, options);
   }
 
   public remove(el: HTMLElement) {
     this.optionsByElement.delete(el);
-
-    if (this.optionsByElement.size === 0) {
-      this.unbind(el);
-    }
+    this.unbind(el);
   }
 }
