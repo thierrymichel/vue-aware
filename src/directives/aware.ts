@@ -100,9 +100,6 @@ const inserted: DirectiveFunction = (el, { value }, vnode) => {
     return;
   }
 
-  console.info('VNODE', el, vnode.context);
-  console.info('???', handlers, value);
-
   // Register callbacks.
   core.eventNames.forEach(name => {
     const options = getOptions(name, value, vnode);
