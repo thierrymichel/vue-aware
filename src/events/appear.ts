@@ -24,6 +24,13 @@ export class Appear extends Manager<IAppearOption> {
 
   constructor(eventName: string) {
     super(eventName);
+
+    this.observers = new Set();
+    this.elementsByObserver = new Multimap();
+    this.onceByElement = new Map();
+  }
+
+  public bind(el: HTMLElement, opts: IAppearOption) {
     if (typeof (window as any).IntersectionObserver === 'undefined') {
       /* tslint:disable:max-line-length */
       console.warn(
@@ -34,12 +41,6 @@ export class Appear extends Manager<IAppearOption> {
       return;
     }
 
-    this.observers = new Set();
-    this.elementsByObserver = new Multimap();
-    this.onceByElement = new Map();
-  }
-
-  public bind(el: HTMLElement, opts: IAppearOption) {
     const options: IAppearOption = {
       once: false,
       root: null,
