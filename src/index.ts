@@ -1,10 +1,10 @@
-import _Vue from 'vue';
+import _Vue, { PluginFunction, PluginObject } from 'vue';
 import { version } from '../package.json';
 import Aware from './directives/aware';
 
 // Install the components
 // tslint:disable-next-line:variable-name
-function install(Vue: typeof _Vue) {
+function install(Vue: typeof _Vue, options?: any) {
   // export function install(Vue: typeof _Vue) {
   Vue.directive('aware', Aware);
 
@@ -19,7 +19,7 @@ function install(Vue: typeof _Vue) {
 /* You shouldn't have to modify the code below */
 
 // Plugin
-const plugin = {
+const plugin: PluginObject<any> = {
   install,
   name: 'vue-aware',
   version,
