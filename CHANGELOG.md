@@ -2,6 +2,12 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.2.3](https://github.com/thierrymichel/vue-aware/compare/v0.2.2...v0.2.3) (2020-01-31)
+
+### Bug Fixes
+
+- :bug: fix undefined window on SSR ([f03cbe5](https://github.com/thierrymichel/vue-aware/commit/f03cbe5ffa47341e3dabaddc559f3f29e346b216))
+
 ### [0.2.2](https://github.com/thierrymichel/vue-aware/compare/v0.2.1...v0.2.2) (2019-07-15)
 
 ### Bug Fixes
