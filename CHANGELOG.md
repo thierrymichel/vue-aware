@@ -2,6 +2,12 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.2.4](https://github.com/thierrymichel/vue-aware/compare/v0.2.3...v0.2.4) (2020-06-03)
+
+### Bug Fixes
+
+- **root:** :wrench: remove sourcemaps on build ([d9139ea](https://github.com/thierrymichel/vue-aware/commit/d9139ea0751e1931dc7f3c93cf3d13b1611394c7))
+
 ### [0.2.3](https://github.com/thierrymichel/vue-aware/compare/v0.2.2...v0.2.3) (2020-01-31)
 
 ### Bug Fixes
