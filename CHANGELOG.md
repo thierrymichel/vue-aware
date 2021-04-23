@@ -2,6 +2,12 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.2.6](https://github.com/thierrymichel/vue-aware/compare/v0.2.5...v0.2.6) (2021-04-23)
+
+### Bug Fixes
+
+- :bug: delete once option for IO ([e492bb3](https://github.com/thierrymichel/vue-aware/commit/e492bb3ef3d9f230710466824d504c6762be9e99))
+
 ### [0.2.5](https://github.com/thierrymichel/vue-aware/compare/v0.2.4...v0.2.5) (2021-04-23)
 
 ### Bug Fixes
