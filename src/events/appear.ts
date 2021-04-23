@@ -49,9 +49,12 @@ export class Appear extends Manager<IAppearOption> {
       ...opts,
     };
 
+    this.onceByElement.set(el, options.once);
+
+    delete options.once;
+
     const observer = this.createObserver(options, el);
 
-    this.onceByElement.set(el, options.once);
     this.optionsByElement.set(el, options);
     observer.observe(el);
   }
