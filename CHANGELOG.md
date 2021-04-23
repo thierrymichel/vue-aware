@@ -2,6 +2,12 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.2.5](https://github.com/thierrymichel/vue-aware/compare/v0.2.4...v0.2.5) (2021-04-23)
+
+### Bug Fixes
+
+- :bug: fix callback invokation when not intersecting ([720b6f3](https://github.com/thierrymichel/vue-aware/commit/720b6f360b9951aa71e1451f8f156f0959273814))
+
 ### [0.2.4](https://github.com/thierrymichel/vue-aware/compare/v0.2.3...v0.2.4) (2020-06-03)
 
 ### Bug Fixes

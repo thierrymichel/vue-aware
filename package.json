@@ -1,6 +1,6 @@
 {
   "name": "vue-aware",
-  "version": "0.2.4",
+  "version": "0.2.5",
   "description": "Optimized and easy way to manage events across Vue.js components.",
   "keywords": [
     "vue",
