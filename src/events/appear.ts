@@ -129,35 +129,33 @@ export class Appear extends Manager<IAppearOption> {
 
       if (entry.isIntersecting) {
         isInViewport = true;
+
         if (entry.intersectionRatio >= 1) {
           isFullyInViewport = true;
         } else {
           isFullyInViewport = false;
         }
-      } else {
-        isInViewport = false;
-        isFullyInViewport = false;
-      }
 
-      const isBeforeViewport =
-        entry.boundingClientRect.top < entry.rootBounds.top;
-      const isAfterViewport =
-        entry.boundingClientRect.top + entry.boundingClientRect.height >
-        entry.rootBounds.top + entry.rootBounds.height;
-      let position = 'center';
+        const isBeforeViewport =
+          entry.boundingClientRect.top < entry.rootBounds.top;
+        const isAfterViewport =
+          entry.boundingClientRect.top + entry.boundingClientRect.height >
+          entry.rootBounds.top + entry.rootBounds.height;
+        let position = 'center';
 
-      if (isBeforeViewport) {
-        position = 'top';
-      } else if (isAfterViewport) {
-        position = 'bottom';
-      }
+        if (isBeforeViewport) {
+          position = 'top';
+        } else if (isAfterViewport) {
+          position = 'bottom';
+        }
 
-      const o = this.optionsByElement.get(el);
+        const o = this.optionsByElement.get(el);
 
-      o.callback(isInViewport, isFullyInViewport, position, o.context);
+        o.callback(isInViewport, isFullyInViewport, position, o.context);
 
-      if (isInViewport && this.onceByElement.get(el)) {
-        this.unobserve(el);
+        if (isInViewport && this.onceByElement.get(el)) {
+          this.unobserve(el);
+        }
       }
     });
   }
