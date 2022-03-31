@@ -139,11 +139,15 @@ export class Appear extends Manager<IAppearOption> {
           isFullyInViewport = false;
         }
 
+        // If no rootBounds, we are in the viewport
         const isBeforeViewport =
-          entry.boundingClientRect.top < entry.rootBounds.top;
+          entry.boundingClientRect.top <
+          (entry.rootBounds ? entry.rootBounds.top : 0);
         const isAfterViewport =
           entry.boundingClientRect.top + entry.boundingClientRect.height >
-          entry.rootBounds.top + entry.rootBounds.height;
+          (entry.rootBounds
+            ? entry.rootBounds.top + entry.rootBounds.height
+            : window.innerHeight);
         let position = 'center';
 
         if (isBeforeViewport) {
